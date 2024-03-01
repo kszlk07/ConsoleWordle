@@ -56,14 +56,16 @@ while 1:
         # getting user guess
         while error:
             guess = input("let's guess: ")
-            if not ContainsANumber(guess) and len(guess) == wordLength:
+            if not ContainsANumber(guess) and len(guess) == wordLength and guess + "\n" in wordList:
                 error = False
             elif ContainsANumber(guess) and len(guess) != wordLength:
                 print("words don't have digits and this word is too long or too short!!!")
             elif ContainsANumber(guess):
                 print("words don't have digits!!!")
-            else:
+            elif len(guess) != wordLength:
                 print("this word is too long or too short!!!")
+            elif guess not in wordList:
+                print("that's not a real word!!!")
 
         guess = guess.lower()
 
@@ -76,7 +78,7 @@ while 1:
                 else:
                     if guess[i] not in correctLetters:
                         correctLetters.append(guess[i])
-            else:
+            elif guess[i] not in incorrectLetters:
                 incorrectLetters.append(guess[i])
         print(f'⬛⬛⬛⬛⬛⬛⬛⬛\n'
               f'correctly placed letters: {anwser}')
